@@ -20,23 +20,7 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background) {
                     LazyColumnWithBackground(
-                        itemsList = listOf(
-                            "One",
-                            "Two",
-                            "Three",
-                            "Four",
-                            "Five",
-                            "Six",
-                            "Seven",
-                            "Eight",
-                            "Nine",
-                            "Ten",
-                            "Eleven",
-                            "Twelve",
-                            "Thirteen",
-                            "Fourteen",
-                            "Fifteen",
-                        )
+                        viewModel = MainViewModel()
                     )
                 }
             }

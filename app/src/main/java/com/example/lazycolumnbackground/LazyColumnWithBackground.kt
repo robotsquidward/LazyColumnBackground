@@ -8,6 +8,8 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
@@ -19,10 +21,12 @@ import com.example.lazycolumnbackground.ui.theme.LazyColumnBackgroundTheme
 
 @Composable
 fun LazyColumnWithBackground(
-    itemsList: List<String>
+    viewModel: MainViewModel,
 ) {
 
     val lazyListState = rememberLazyListState()
+
+    val items by viewModel.items.collectAsState(initial = emptyList())
 
     Box(
         contentAlignment = Alignment.TopCenter,
@@ -50,7 +54,7 @@ fun LazyColumnWithBackground(
             state = lazyListState,
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            items(itemsList, key = { it }) { item ->
+            items(items, key = { it }) { item ->
                 Card(
                     elevation = 8.dp,
                     modifier = Modifier
@@ -72,23 +76,7 @@ fun LazyColumnWithBackground(
 fun LazyColumnWithBackgroundPreview() {
     LazyColumnBackgroundTheme {
         LazyColumnWithBackground(
-            itemsList = listOf(
-                "One",
-                "Two",
-                "Three",
-                "Four",
-                "Five",
-                "Six",
-                "Seven",
-                "Eight",
-                "Nine",
-                "Ten",
-                "Eleven",
-                "Twelve",
-                "Thirteen",
-                "Fourteen",
-                "Fifteen",
-            )
+            viewModel = MainViewModel()
         )
     }
 }
